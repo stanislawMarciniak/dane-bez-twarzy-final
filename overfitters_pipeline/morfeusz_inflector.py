@@ -32,20 +32,22 @@ class MorfeuszInflector:
             print("OSTRZEŻENIE: Morfeusz nie załadowany. Funkcja będzie zwracać tylko lematy.")
             self.morf = None
 
-    def inflect_word(self, lemma: str, target_case: str, is_female: bool) -> str:
+    def inflect_word(self, lemma: str, target_case: str, is_female: bool, debug: bool = False) -> str:
         if not self.morf or not lemma:
             return lemma
 
         target_tag = CASE_MAP.get(target_case, "nom")
         gender_codes = ['f'] if is_female else ['m1', 'm2', 'm3']
 
-        print(f"\n--- DEBUG FLEXJA ---")
-        print(f"Lemat: {lemma}, Płeć: {'kobieta' if is_female else 'mężczyzna'}, Szukany przypadek: {target_case} ({target_tag})")
+        if debug:
+            print(f"\n--- DEBUG FLEXJA ---")
+            print(f"Lemat: {lemma}, Płeć: {'kobieta' if is_female else 'mężczyzna'}, Szukany przypadek: {target_case} ({target_tag})")
 
         try:
             results = self.morf.generate(lemma)
         except Exception as e:
-            print(f"DEBUG: Błąd Morfeusza: {e}. Zwracam lemat.")
+            if debug:
+                print(f"DEBUG: Błąd Morfeusza: {e}. Zwracam lemat.")
             return lemma
 
         found_form = None
@@ -73,7 +75,7 @@ class MorfeuszInflector:
 
             is_correct_inflection = tag_matches(tag)
 
-            if is_valid_type:
+            if is_valid_type and debug:
                 print(f"  > FORMA: {form:<12} | POPRAWNY TYP: {is_valid_type} | POPRAWNA FLEKSJA: {is_correct_inflection} | TAG: {tag}")
 
             if is_valid_type and is_correct_inflection:
@@ -81,8 +83,10 @@ class MorfeuszInflector:
                 break
 
         if found_form:
-            print(f"DEBUG: ZNALEZIONO FLEXJĘ: {found_form}")
+            if debug:
+                print(f"DEBUG: ZNALEZIONO FLEXJĘ: {found_form}")
             return found_form
         else:
-            print("DEBUG: FLEXJA NIEZNAJDZIONA. Zwracam lemat.")
+            if debug:
+                print("DEBUG: FLEXJA NIEZNAJDZIONA. Zwracam lemat.")
             return lemma

@@ -4,9 +4,9 @@ import re
 import random
 import sys
 
-# Importy z plików zewnętrznych
-from morfeusz_inflector import MorfeuszInflector
-from synthetic_data_pool import (
+# Importy z tego samego pakietu
+from .morfeusz_inflector import MorfeuszInflector
+from .synthetic_data_pool import (
     SYNTHETIC_POOL,
     generate_random_email,
     generate_random_phone,
