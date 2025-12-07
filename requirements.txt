@@ -1,0 +1,5 @@
+spacy>=3.5.0
+transformers>=4.20.0
+torch>=1.10.0
+morfeusz2==1.99.12
+rapidfuzz>=3.6.1
