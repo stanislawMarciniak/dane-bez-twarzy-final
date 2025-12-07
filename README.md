@@ -337,3 +337,8 @@ Wyniki są automatycznie zapisywane do katalogu wyjściowego zdefiniowanego w ko
 
   * `output_Overfitters.txt` (Tekst po anonimizacji ML/Regex)
   * `synthetic_generation_Overfitters.txt` (Tekst z danymi syntetycznymi)
+
+
+### Wnioski
+
+Przez bardzo zniekształcony i zanieczyszczony dużą ilością 'pustych' etykiet początkowy zestaw danych treningowych, wymagał on poświęcenia dużej uwagi co do całościowej obróbki tekstu. Używając regexowych narzędzi oraz ETL-ów staraliśmy się poprawić jakoś zbioru, która potem znacząco oddziałowuje na skuteczność i dokładność trenowanego modelu językowego. Dzięki detalicznemu podejściu do preprocessingu, udało nam się uzyskać zadowalające wyniki NLP. Po wytrenowaniu otrzymaliśmy zanonimizowany plik tekstowy który dzięki naszemu hybrydowemu podejściu dodatkowo doszlifowaliśmy w jego klarowności i czystości. 
