@@ -16,6 +16,8 @@ UWAGA: rowiązanie celowo nie rozpoznaje fałszywych danych, np. maile które ma
 
 ## Architektura Pipeline
 
+(wszystkie wymagane pliki są w folderze "pliki_do_oddania")
+
 System wykorzystuje wielowarstwową architekturę:
 
 ```
