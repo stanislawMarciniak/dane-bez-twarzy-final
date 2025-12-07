@@ -2,7 +2,9 @@
 
 **System anonimizacji danych osobowych w tekstach polskich**
 
-Biblioteka Python do automatycznej detekcji i anonimizacji danych wrażliwych w tekstach w języku polskim. Zaprojektowana dla projektu PLLuM (Polish Large Language Model).
+Hybrydowa biblioteka Python łącząca ML (HerBERT NER) + RegEx + morfologię polską, która automatycznie wykrywa i anonimizuje wrażliwe informacje w tekstach po polsku, zachowując strukturę, fleksję i sens zdania.
+
+UWAGA: rowiązanie celowo nie rozpoznaje fałszywych danych, np. maile które mają niedopuszczalne znaki, pesel który nie spełnia matematycznych własności (Matematyczny PESEL to mechanizm sprawdzania poprawności numeru PESEL za pomocą prostej sumy kontrolnej; polega na pomnożeniu pierwszych 10 cyfr PESELu przez kolejne wagi (1, 3, 7, 9, 1, 3, 7, 9, 1, 3), zsumowaniu wyników, a następnie wzięciu reszty z dzielenia tej sumy przez 10 (wynik powinien być równy ostatniej cyfrze PESELu)) itd.
 
 ## Cele projektu
 
@@ -309,6 +311,3 @@ kobieta Mieszkam w Gdyni przy pl. Akacjowa 63, 31-846 Kraków a jakby coś,
 to łap kontakt: +48 649 878 486 albo kowalski16@gmail.com.
 ```
 
-## Zespół
-
-**Overfitters** - projekt realizowany w ramach PLLuM (Polish Large Language Model)
