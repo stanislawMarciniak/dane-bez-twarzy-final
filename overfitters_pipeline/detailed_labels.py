@@ -824,25 +824,24 @@ def save_file(filepath, content):
         f.write(content)
     logger.info("Zapisano wynik do: %s", filepath)
 
-if __name__ == "__main__":
-    start = time.perf_counter()
-    orig = read_file(FILE_ORIGINAL)
-    anon = read_file(FILE_ANONYMIZED)
+start = time.perf_counter()
+orig = read_file(FILE_ORIGINAL)
+anon = read_file(FILE_ANONYMIZED)
 
-    if orig and anon:
-        print("\n================= PRZETWARZANIE =================")
-        
-        result = process_text_tokenized(orig, anon, KEEP_LABELS)
-        save_file(FILE_OUTPUT, result)
-        
-        end = time.perf_counter()
-        cache_size = len(MORFEUSZ_CACHE)
-        
-        print(f"✔ Przetworzono w {end - start:.3f} sekund")
-        print(f"✔ Cache Morfeusz: {cache_size} unikalnych słów")
-        print(f"✔ Wynik zapisano do: {FILE_OUTPUT}")
-    else:
-        print("\n================= BŁĄD PLIKÓW =================")
-        print("Nie można przetworzyć tekstu: brak jednego lub obu plików źródłowych.")
-        
-    logger.info("=== KONIEC ===")
+if orig and anon:
+    print("\n================= PRZETWARZANIE =================")
+    
+    result = process_text_tokenized(orig, anon, KEEP_LABELS)
+    save_file(FILE_OUTPUT, result)
+    
+    end = time.perf_counter()
+    cache_size = len(MORFEUSZ_CACHE)
+    
+    print(f"✔ Przetworzono w {end - start:.3f} sekund")
+    print(f"✔ Cache Morfeusz: {cache_size} unikalnych słów")
+    print(f"✔ Wynik zapisano do: {FILE_OUTPUT}")
+else:
+    print("\n================= BŁĄD PLIKÓW =================")
+    print("Nie można przetworzyć tekstu: brak jednego lub obu plików źródłowych.")
+    
+logger.info("=== KONIEC ===")
