@@ -1,0 +1,29 @@
+# =========================================================================
+# WYNIKI WYDAJNOŚCI I KONFIGURACJA ŚRODOWISKA
+# Zespół: Overfitters
+# Data: 07.12.2025
+# =========================================================================
+
+# 1. METRYKI CZASOWE (Kryterium: Czas przetwarzania od odczytu do zapisu. Nie wliczamy czasu ładowania bibliotek/modeli.)
+
+TIME: X.XXX
+# Czas przetwarzania zmierzony na dostarczonym zbiorze testowym w sekundach.
+# Mierzono czas wykonania: [detailed_labels.py -> wyniki.txt] + [synthetic_generator.py -> finalny output].
+
+
+# 2. SPRZĘT (HARDWARE)
+
+Hardware:
+Typ: CPU
+Model: XXXX
+Pamięć RAM: XX GB
+
+
+# 3. KONFIGURACJA MODELI I API
+
+API: NIE
+# NIE użyto API PLLUM ani własnego modelu postawionego na zewnętrznym serwerze.
+
+Model Użyty: Moduł Fleksyjny Morfeusz2
+# Morfeusz2 jest wykorzystywany lokalnie, w pełni offline, jako kluczowy element pipeline'u do tagowania i syntezy.
+# Inne narzędzia: Biblioteka Rapidfuzz do mapowania tokenów.
