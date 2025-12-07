@@ -108,7 +108,7 @@ rapidfuzz>=3.6.1        # Algorytm Levenshtein
 python pipeline.py data/orig.txt
 
 # Wyniki zapisywane automatycznie do:
-# - pliki_do_oddania/outputOverfitters.txt
+# - pliki_do_oddania/output_Overfitters.txt
 # - pliki_do_oddania/synthetic_generation_Overfitters.txt
 ```
 
@@ -309,3 +309,31 @@ to łap kontakt: +48 649 878 486 albo kowalski16@gmail.com.
 ## Zespół
 
 **Overfitters** - projekt realizowany w ramach PLLuM (Polish Large Language Model)
+
+
+Oto schludna i zwięzła dokumentacja w formacie Markdown, gotowa do wklejenia do Twojego pliku `README.md`. Koncentruje się na ścieżce uruchomienia w środowisku skonteneryzowanym oraz wymaganym pliku wejściowym.
+
+-----
+
+## 🚀 Uruchomienie Pipeline
+
+Pipeline został zaprojektowany do przetwarzania pliku wejściowego i generowania dwóch plików wyjściowych: zanonimizowanego oraz syntetycznego.
+
+# Montując plik 'data/orig.txt' na hoście do ścieżki '/app/data/input_file.txt' w kontenerze
+docker run --rm \
+    -v $(pwd)/data/orig.txt:/app/data/input_file.txt:ro \
+    -v $(pwd)/wyniki_pipeline:/app/pliki_do_oddania \
+    overfitters-pipeline data/input_file.txt
+
+### 1. Wymagany Plik Wejściowy
+
+  * **Nazwa:** Dowolna (np. `orig.txt`, `input.txt`).
+  * **Format:** Plik tekstowy (`.txt`) zawierający dane do anonimizacji.
+  * **Lokalizacja:** Ścieżka do tego pliku musi być poprawnie przekazana jako argument (zarówno w `pipeline.py`, jak i jako ścieżka do montowania w Dockerze).
+
+### 2. Pliki Wyjściowe
+
+Wyniki są automatycznie zapisywane do katalogu wyjściowego zdefiniowanego w konfiguracji Pipeline'u (`./pliki_do_oddania` w kontenerze):
+
+  * `output_Overfitters.txt` (Tekst po anonimizacji ML/Regex)
+  * `synthetic_generation_Overfitters.txt` (Tekst z danymi syntetycznymi)
