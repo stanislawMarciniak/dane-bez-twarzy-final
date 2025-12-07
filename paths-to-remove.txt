@@ -1,2 +1,0 @@
-models/checkpoint-471/optimizer.pt
-models/checkpoint-628/optimizer.pt
