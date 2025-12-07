@@ -18,7 +18,6 @@ Typ: CPU
 Model: XXXX
 Pamięć RAM: XX GB
 
-
 # 3. KONFIGURACJA MODELI I API
 
 API: NIE
