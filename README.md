@@ -43,7 +43,7 @@ System wykorzystuje wielowarstwową architekturę:
 └─────────────────────────────────────────────────────────────┘
                               │
                               ▼
-                    📄 outputOverfitters.txt
+                    📄 output_Overfitters.txt
                               │
                               ▼
 ┌─────────────────────────────────────────────────────────────┐
@@ -80,6 +80,9 @@ System wykorzystuje wielowarstwową architekturę:
 # Klonowanie repozytorium
 git clone git@github.com:stanislawMarciniak/dane-bez-twarzy.git
 cd dane-bez-twarzy
+
+# Wypakuj model
+unzip models.zip -d models
 
 # Stworzenie wirtualnego środowiska
 python -m venv venv
@@ -156,7 +159,7 @@ pipeline = AnonymizationPipeline()
 results = pipeline.process_file("data/orig.txt")
 
 # Pliki wyjściowe:
-# - pliki_do_oddania/outputOverfitters.txt
+# - pliki_do_oddania/output_Overfitters.txt
 # - pliki_do_oddania/synthetic_generation_Overfitters.txt
 ```
 
@@ -175,7 +178,7 @@ dane-bez-twarzy/
 ├── models/                         # Wytrenowany model NER
 ├── data/                           # Dane wejściowe
 ├── pliki_do_oddania/               # Wyniki (outputy)
-│   ├── outputOverfitters.txt
+│   ├── output_Overfitters.txt
 │   └── synthetic_generation_Overfitters.txt
 ├── pipeline.py                     # Wrapper CLI
 ├── requirements.txt
@@ -285,7 +288,7 @@ kobieta. Mieszkam w Dębicy przy ul. Wrzozowej 10, a jakby coś, to łap kontakt
 795 324 908 albo wezyktola@example.net.
 ```
 
-### Po ML + Regex (outputOverfitters.txt)
+### Po ML + Regex (output_Overfitters.txt)
 ```
 O kurde, muszę się wyżalić, bo zaraz eksploduję. Jestem [name] Noras, [age] lat, 
 [sex] Mieszkam w [city] przy [address] a jakby coś, to łap kontakt: 
@@ -309,36 +312,3 @@ to łap kontakt: +48 649 878 486 albo kowalski16@gmail.com.
 ## Zespół
 
 **Overfitters** - projekt realizowany w ramach PLLuM (Polish Large Language Model)
-
-
-Oto schludna i zwięzła dokumentacja w formacie Markdown, gotowa do wklejenia do Twojego pliku `README.md`. Koncentruje się na ścieżce uruchomienia w środowisku skonteneryzowanym oraz wymaganym pliku wejściowym.
-
------
-
-## 🚀 Uruchomienie Pipeline
-
-Pipeline został zaprojektowany do przetwarzania pliku wejściowego i generowania dwóch plików wyjściowych: zanonimizowanego oraz syntetycznego.
-
-# Montując plik 'data/orig.txt' na hoście do ścieżki '/app/data/input_file.txt' w kontenerze
-docker run --rm \
-    -v $(pwd)/data/orig.txt:/app/data/input_file.txt:ro \
-    -v $(pwd)/wyniki_pipeline:/app/pliki_do_oddania \
-    overfitters-pipeline data/input_file.txt
-
-### 1. Wymagany Plik Wejściowy
-
-  * **Nazwa:** Dowolna (np. `orig.txt`, `input.txt`).
-  * **Format:** Plik tekstowy (`.txt`) zawierający dane do anonimizacji.
-  * **Lokalizacja:** Ścieżka do tego pliku musi być poprawnie przekazana jako argument (zarówno w `pipeline.py`, jak i jako ścieżka do montowania w Dockerze).
-
-### 2. Pliki Wyjściowe
-
-Wyniki są automatycznie zapisywane do katalogu wyjściowego zdefiniowanego w konfiguracji Pipeline'u (`./pliki_do_oddania` w kontenerze):
-
-  * `output_Overfitters.txt` (Tekst po anonimizacji ML/Regex)
-  * `synthetic_generation_Overfitters.txt` (Tekst z danymi syntetycznymi)
-
-
-### Wnioski
-
-Przez bardzo zniekształcony i zanieczyszczony dużą ilością 'pustych' etykiet początkowy zestaw danych treningowych, wymagał on poświęcenia dużej uwagi co do całościowej obróbki tekstu. Używając regexowych narzędzi oraz ETL-ów staraliśmy się poprawić jakoś zbioru, która potem znacząco oddziałowuje na skuteczność i dokładność trenowanego modelu językowego. Dzięki detalicznemu podejściu do preprocessingu, udało nam się uzyskać zadowalające wyniki NLP. Po wytrenowaniu otrzymaliśmy zanonimizowany plik tekstowy który dzięki naszemu hybrydowemu podejściu dodatkowo doszlifowaliśmy w jego klarowności i czystości. 
